@@ -4,22 +4,28 @@
 ## Présentation
 
 Projet EconoCom de début de M2 GI. L'objectif est de réaliser une application web permettant d'effectuer des transactions. <br>
-*LaPiquette : Site de vente de vin huppé.*
+🍷 *LaPiquette : Site de vente de vin huppé.* 🍷
 
 ## Fonctionnalitées
- * 🟥 Afficher
+### Magasin
+ * 🟥 Accueil
  * 🟥 Trier
  * 🟥 Filtrer
  * 🟥 Selectionner un produit
+### Client
+ * 🟥 S'inscrire
+ * 🟥 Se loguer
  * 🟥 Ajouter dans le panier
  * 🟥 Supprimer du panier
  * 🟥 Commander
- * 🟥 S'inscrire
- * 🟥 Se loguer
+ * 🟥 Favoris
+### Admin
+ * 🟥 Gestion des stocks
 
 ## Outils complétées
 ### 🟥 Qualité de code
 ### 🟥 Tests Unitaires & Code Coverage
+### 🟥 Tests de performance
 ### 🟥 Intégration continue
 ### 🟥 Livraison continue
 ### 🟥 Deploiement Cloud
@@ -29,4 +35,4 @@ Projet EconoCom de début de M2 GI. L'objectif est de réaliser une application 
 Morgane Henrion  
 François-Xavier Gros
 Aurélien Chosson
-Janna Meola
+Jahna Meola (chef de projet)
