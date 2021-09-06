@@ -1,0 +1,57 @@
+{
+  "name": "Order",
+  "fields": [
+    {
+      "fieldName": "idOrder",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "totalPrice",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "datePurchase",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "bill",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "orderLine",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "orderLine"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "client"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "client"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "orderLine",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "orderLine"
+    }
+  ],
+  "entityTableName": "jhi_order",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["laPiquette"],
+  "changelogDate": "20210906131430"
+}
