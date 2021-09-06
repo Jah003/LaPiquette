@@ -49,9 +49,6 @@ public class OrderService {
             .findById(order.getId())
             .map(
                 existingOrder -> {
-                    if (order.getIdOrder() != null) {
-                        existingOrder.setIdOrder(order.getIdOrder());
-                    }
                     if (order.getTotalPrice() != null) {
                         existingOrder.setTotalPrice(order.getTotalPrice());
                     }

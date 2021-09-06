@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -143,15 +142,10 @@ public class ProductResource {
      * {@code GET  /products} : get all the products.
      *
      * @param pageable the pagination information.
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of products in body.
      */
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getAllProducts(Pageable pageable, @RequestParam(required = false) String filter) {
-        if ("orderline-is-null".equals(filter)) {
-            log.debug("REST request to get all Products where orderLine is null");
-            return new ResponseEntity<>(productService.findAllWhereOrderLineIsNull(), HttpStatus.OK);
-        }
+    public ResponseEntity<List<Product>> getAllProducts(Pageable pageable) {
         log.debug("REST request to get a page of Products");
         Page<Product> page = productService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);

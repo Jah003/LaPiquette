@@ -19,11 +19,5 @@
                                  constraintName="fk_order_line__order_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_order"/>
-
-        <addForeignKeyConstraint baseColumnNames="order_id"
-                                 baseTableName="order_line"
-                                 constraintName="fk_order_line__order_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_order"/>
     </changeSet>
 </databaseChangeLog>

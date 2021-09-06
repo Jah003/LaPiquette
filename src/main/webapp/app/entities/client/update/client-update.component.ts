@@ -16,8 +16,7 @@ export class ClientUpdateComponent implements OnInit {
   isSaving = false;
 
   editForm = this.fb.group({
-    id: [],
-    idClient: [],
+    id: [null, []],
     firstName: [],
     lastName: [],
     email: [],
@@ -70,7 +69,6 @@ export class ClientUpdateComponent implements OnInit {
   protected updateForm(client: IClient): void {
     this.editForm.patchValue({
       id: client.id,
-      idClient: client.idClient,
       firstName: client.firstName,
       lastName: client.lastName,
       email: client.email,
@@ -84,7 +82,6 @@ export class ClientUpdateComponent implements OnInit {
     return {
       ...new Client(),
       id: this.editForm.get(['id'])!.value,
-      idClient: this.editForm.get(['idClient'])!.value,
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
       email: this.editForm.get(['email'])!.value,

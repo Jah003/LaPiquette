@@ -66,12 +66,10 @@ describe('Component Tests', () => {
         const orderLine: IOrderLine = { id: 456 };
         const order: IOrder = { id: 54146 };
         orderLine.order = order;
-        const order: IOrder = { id: 89430 };
-        orderLine.order = order;
 
-        const orderCollection: IOrder[] = [{ id: 73284 }];
+        const orderCollection: IOrder[] = [{ id: 89430 }];
         jest.spyOn(orderService, 'query').mockReturnValue(of(new HttpResponse({ body: orderCollection })));
-        const additionalOrders = [order, order];
+        const additionalOrders = [order];
         const expectedCollection: IOrder[] = [...additionalOrders, ...orderCollection];
         jest.spyOn(orderService, 'addOrderToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -87,9 +85,7 @@ describe('Component Tests', () => {
         const orderLine: IOrderLine = { id: 456 };
         const product: IProduct = { id: 19186 };
         orderLine.product = product;
-        const order: IOrder = { id: 82139 };
-        orderLine.order = order;
-        const order: IOrder = { id: 21793 };
+        const order: IOrder = { id: 73284 };
         orderLine.order = order;
 
         activatedRoute.data = of({ orderLine });
@@ -97,7 +93,6 @@ describe('Component Tests', () => {
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(orderLine));
         expect(comp.productsCollection).toContain(product);
-        expect(comp.ordersSharedCollection).toContain(order);
         expect(comp.ordersSharedCollection).toContain(order);
       });
     });

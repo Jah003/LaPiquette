@@ -26,7 +26,6 @@ describe('Service Tests', () => {
 
       elemDefault = {
         id: 0,
-        idOrder: 0,
         totalPrice: 0,
         datePurchase: currentDate,
         bill: false,
@@ -76,7 +75,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 1,
-            idOrder: 1,
             totalPrice: 1,
             datePurchase: currentDate.format(DATE_FORMAT),
             bill: true,
@@ -101,8 +99,8 @@ describe('Service Tests', () => {
       it('should partial update a Order', () => {
         const patchObject = Object.assign(
           {
-            idOrder: 1,
-            datePurchase: currentDate.format(DATE_FORMAT),
+            totalPrice: 1,
+            bill: true,
           },
           new Order()
         );
@@ -127,7 +125,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 1,
-            idOrder: 1,
             totalPrice: 1,
             datePurchase: currentDate.format(DATE_FORMAT),
             bill: true,
@@ -187,7 +184,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Order to an array', () => {
-          const orderArray: IOrder[] = [{ id: 123 }, { id: 456 }, { id: 98623 }];
+          const orderArray: IOrder[] = [{ id: 123 }, { id: 456 }, { id: 19267 }];
           const orderCollection: IOrder[] = [{ id: 123 }];
           expectedResult = service.addOrderToCollectionIfMissing(orderCollection, ...orderArray);
           expect(expectedResult).toHaveLength(3);

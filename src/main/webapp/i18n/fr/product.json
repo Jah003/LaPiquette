@@ -30,8 +30,7 @@
       "temperature": "Temperature",
       "percentPromo": "Percent Promo",
       "stock": "Stock",
-      "urlImage": "Url Image",
-      "orderLine": "Order Line"
+      "urlImage": "Url Image"
     }
   }
 }

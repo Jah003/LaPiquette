@@ -20,12 +20,10 @@ export class OrderUpdateComponent implements OnInit {
   clientsSharedCollection: IClient[] = [];
 
   editForm = this.fb.group({
-    id: [],
-    idOrder: [],
+    id: [null, []],
     totalPrice: [],
     datePurchase: [],
     bill: [],
-    client: [],
     client: [],
   });
 
@@ -84,30 +82,20 @@ export class OrderUpdateComponent implements OnInit {
   protected updateForm(order: IOrder): void {
     this.editForm.patchValue({
       id: order.id,
-      idOrder: order.idOrder,
       totalPrice: order.totalPrice,
       datePurchase: order.datePurchase,
       bill: order.bill,
       client: order.client,
-      client: order.client,
     });
 
-    this.clientsSharedCollection = this.clientService.addClientToCollectionIfMissing(
-      this.clientsSharedCollection,
-      order.client,
-      order.client
-    );
+    this.clientsSharedCollection = this.clientService.addClientToCollectionIfMissing(this.clientsSharedCollection, order.client);
   }
 
   protected loadRelationshipsOptions(): void {
     this.clientService
       .query()
       .pipe(map((res: HttpResponse<IClient[]>) => res.body ?? []))
-      .pipe(
-        map((clients: IClient[]) =>
-          this.clientService.addClientToCollectionIfMissing(clients, this.editForm.get('client')!.value, this.editForm.get('client')!.value)
-        )
-      )
+      .pipe(map((clients: IClient[]) => this.clientService.addClientToCollectionIfMissing(clients, this.editForm.get('client')!.value)))
       .subscribe((clients: IClient[]) => (this.clientsSharedCollection = clients));
   }
 
@@ -115,11 +103,9 @@ export class OrderUpdateComponent implements OnInit {
     return {
       ...new Order(),
       id: this.editForm.get(['id'])!.value,
-      idOrder: this.editForm.get(['idOrder'])!.value,
       totalPrice: this.editForm.get(['totalPrice'])!.value,
       datePurchase: this.editForm.get(['datePurchase'])!.value,
       bill: this.editForm.get(['bill'])!.value,
-      client: this.editForm.get(['client'])!.value,
       client: this.editForm.get(['client'])!.value,
     };
   }

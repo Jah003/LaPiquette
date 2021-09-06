@@ -2,8 +2,9 @@
   "name": "Order",
   "fields": [
     {
-      "fieldName": "idOrder",
-      "fieldType": "Long"
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["unique"]
     },
     {
       "fieldName": "totalPrice",
@@ -30,18 +31,6 @@
       "otherEntityName": "client",
       "otherEntityRelationshipName": "order",
       "relationshipName": "client"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "client",
-      "otherEntityRelationshipName": "order",
-      "relationshipName": "client"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "orderLine",
-      "otherEntityRelationshipName": "order",
-      "relationshipName": "orderLine"
     }
   ],
   "entityTableName": "jhi_order",

@@ -10,13 +10,9 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dt><span jhiTranslate="laPiquetteApp.order.id">Id</span></dt>
         <dd>
           <span>{{ order.id }}</span>
-        </dd>
-        <dt><span jhiTranslate="laPiquetteApp.order.idOrder">Id Order</span></dt>
-        <dd>
-          <span>{{ order.idOrder }}</span>
         </dd>
         <dt><span jhiTranslate="laPiquetteApp.order.totalPrice">Total Price</span></dt>
         <dd>
@@ -29,12 +25,6 @@
         <dt><span jhiTranslate="laPiquetteApp.order.bill">Bill</span></dt>
         <dd>
           <span>{{ order.bill }}</span>
-        </dd>
-        <dt><span jhiTranslate="laPiquetteApp.order.client">Client</span></dt>
-        <dd>
-          <div *ngIf="order.client">
-            <a [routerLink]="['/client', order.client?.id, 'view']">{{ order.client?.id }}</a>
-          </div>
         </dd>
         <dt><span jhiTranslate="laPiquetteApp.order.client">Client</span></dt>
         <dd>

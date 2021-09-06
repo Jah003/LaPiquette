@@ -61,15 +61,7 @@
       "fieldType": "String"
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "orderLine",
-      "otherEntityRelationshipName": "product",
-      "relationshipName": "orderLine",
-      "ownerSide": false
-    }
-  ],
+  "relationships": [],
   "entityTableName": "product",
   "dto": "no",
   "pagination": "pagination",

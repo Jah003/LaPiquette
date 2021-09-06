@@ -9,6 +9,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,7 +56,7 @@ public class OrderResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/orders")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) throws URISyntaxException {
+    public ResponseEntity<Order> createOrder(@Valid @RequestBody Order order) throws URISyntaxException {
         log.debug("REST request to save Order : {}", order);
         if (order.getId() != null) {
             throw new BadRequestAlertException("A new order cannot already have an ID", ENTITY_NAME, "idexists");
@@ -77,7 +79,7 @@ public class OrderResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/orders/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable(value = "id", required = false) final Long id, @RequestBody Order order)
+    public ResponseEntity<Order> updateOrder(@PathVariable(value = "id", required = false) final Long id, @Valid @RequestBody Order order)
         throws URISyntaxException {
         log.debug("REST request to update Order : {}, {}", id, order);
         if (order.getId() == null) {
@@ -110,8 +112,10 @@ public class OrderResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/orders/{id}", consumes = "application/merge-patch+json")
-    public ResponseEntity<Order> partialUpdateOrder(@PathVariable(value = "id", required = false) final Long id, @RequestBody Order order)
-        throws URISyntaxException {
+    public ResponseEntity<Order> partialUpdateOrder(
+        @PathVariable(value = "id", required = false) final Long id,
+        @NotNull @RequestBody Order order
+    ) throws URISyntaxException {
         log.debug("REST request to partial update Order partially : {}, {}", id, order);
         if (order.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

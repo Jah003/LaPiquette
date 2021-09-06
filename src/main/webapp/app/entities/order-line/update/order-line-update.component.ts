@@ -29,7 +29,6 @@ export class OrderLineUpdateComponent implements OnInit {
     totalPrice: [],
     product: [],
     order: [],
-    order: [],
   });
 
   constructor(
@@ -97,15 +96,10 @@ export class OrderLineUpdateComponent implements OnInit {
       totalPrice: orderLine.totalPrice,
       product: orderLine.product,
       order: orderLine.order,
-      order: orderLine.order,
     });
 
     this.productsCollection = this.productService.addProductToCollectionIfMissing(this.productsCollection, orderLine.product);
-    this.ordersSharedCollection = this.orderService.addOrderToCollectionIfMissing(
-      this.ordersSharedCollection,
-      orderLine.order,
-      orderLine.order
-    );
+    this.ordersSharedCollection = this.orderService.addOrderToCollectionIfMissing(this.ordersSharedCollection, orderLine.order);
   }
 
   protected loadRelationshipsOptions(): void {
@@ -120,11 +114,7 @@ export class OrderLineUpdateComponent implements OnInit {
     this.orderService
       .query()
       .pipe(map((res: HttpResponse<IOrder[]>) => res.body ?? []))
-      .pipe(
-        map((orders: IOrder[]) =>
-          this.orderService.addOrderToCollectionIfMissing(orders, this.editForm.get('order')!.value, this.editForm.get('order')!.value)
-        )
-      )
+      .pipe(map((orders: IOrder[]) => this.orderService.addOrderToCollectionIfMissing(orders, this.editForm.get('order')!.value)))
       .subscribe((orders: IOrder[]) => (this.ordersSharedCollection = orders));
   }
 
@@ -136,7 +126,6 @@ export class OrderLineUpdateComponent implements OnInit {
       unityPrice: this.editForm.get(['unityPrice'])!.value,
       totalPrice: this.editForm.get(['totalPrice'])!.value,
       product: this.editForm.get(['product'])!.value,
-      order: this.editForm.get(['order'])!.value,
       order: this.editForm.get(['order'])!.value,
     };
   }

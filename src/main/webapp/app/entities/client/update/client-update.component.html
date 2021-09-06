@@ -9,13 +9,13 @@
         <jhi-alert-error></jhi-alert-error>
 
         <div class="form-group" [hidden]="editForm.get('id')!.value == null">
-          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <label class="form-control-label" jhiTranslate="laPiquetteApp.client.id" for="field_id">Id</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" jhiTranslate="laPiquetteApp.client.idClient" for="field_idClient">Id Client</label>
-          <input type="number" class="form-control" name="idClient" id="field_idClient" data-cy="idClient" formControlName="idClient" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
         </div>
 
         <div class="form-group">

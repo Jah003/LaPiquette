@@ -14,9 +14,6 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="id_client" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="first_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -55,7 +52,6 @@
                   separator=";"
                   tableName="client">
             <column name="id" type="numeric"/>
-            <column name="id_client" type="numeric"/>
             <column name="first_name" type="string"/>
             <column name="last_name" type="string"/>
             <column name="email" type="string"/>

@@ -48,9 +48,6 @@
           <th scope="col" jhiSortBy="order.id">
             <span jhiTranslate="laPiquetteApp.orderLine.order">Order</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="order.id">
-            <span jhiTranslate="laPiquetteApp.orderLine.order">Order</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -65,11 +62,6 @@
           <td>
             <div *ngIf="orderLine.product">
               <a [routerLink]="['/product', orderLine.product?.id, 'view']">{{ orderLine.product?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="orderLine.order">
-              <a [routerLink]="['/order', orderLine.order?.id, 'view']">{{ orderLine.order?.id }}</a>
             </div>
           </td>
           <td>

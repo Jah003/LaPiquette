@@ -2,10 +2,7 @@ package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Product;
 import com.mycompany.myapp.repository.ProductRepository;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -108,19 +105,6 @@ public class ProductService {
     public Page<Product> findAll(Pageable pageable) {
         log.debug("Request to get all Products");
         return productRepository.findAll(pageable);
-    }
-
-    /**
-     *  Get all the products where OrderLine is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public List<Product> findAllWhereOrderLineIsNull() {
-        log.debug("Request to get all products where OrderLine is null");
-        return StreamSupport
-            .stream(productRepository.findAll().spliterator(), false)
-            .filter(product -> product.getOrderLine() == null)
-            .collect(Collectors.toList());
     }
 
     /**

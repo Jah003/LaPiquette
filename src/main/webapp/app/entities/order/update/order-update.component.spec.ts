@@ -44,12 +44,10 @@ describe('Component Tests', () => {
         const order: IOrder = { id: 456 };
         const client: IClient = { id: 95691 };
         order.client = client;
-        const client: IClient = { id: 87981 };
-        order.client = client;
 
-        const clientCollection: IClient[] = [{ id: 8912 }];
+        const clientCollection: IClient[] = [{ id: 87981 }];
         jest.spyOn(clientService, 'query').mockReturnValue(of(new HttpResponse({ body: clientCollection })));
-        const additionalClients = [client, client];
+        const additionalClients = [client];
         const expectedCollection: IClient[] = [...additionalClients, ...clientCollection];
         jest.spyOn(clientService, 'addClientToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -63,16 +61,13 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const order: IOrder = { id: 456 };
-        const client: IClient = { id: 38759 };
-        order.client = client;
-        const client: IClient = { id: 94483 };
+        const client: IClient = { id: 8912 };
         order.client = client;
 
         activatedRoute.data = of({ order });
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(order));
-        expect(comp.clientsSharedCollection).toContain(client);
         expect(comp.clientsSharedCollection).toContain(client);
       });
     });

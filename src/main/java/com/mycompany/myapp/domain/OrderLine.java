@@ -30,17 +30,12 @@ public class OrderLine implements Serializable {
     @Column(name = "total_price")
     private Float totalPrice;
 
-    @JsonIgnoreProperties(value = { "orderLine" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Product product;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "orderLines", "client", "client", "orderLines" }, allowSetters = true)
-    private Order order;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "orderLines", "client", "client", "orderLines" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "orderLines", "client" }, allowSetters = true)
     private Order order;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -107,19 +102,6 @@ public class OrderLine implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public Order getOrder() {
-        return this.order;
-    }
-
-    public OrderLine order(Order order) {
-        this.setOrder(order);
-        return this;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Order getOrder() {

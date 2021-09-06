@@ -17,15 +17,12 @@
       "detail": {
         "title": "Order"
       },
-      "id": "ID",
-      "idOrder": "Id Order",
+      "id": "Id",
       "totalPrice": "Total Price",
       "datePurchase": "Date Purchase",
       "bill": "Bill",
       "orderLine": "Order Line",
-      "client": "Client",
-      "client": "Client",
-      "orderLine": "Order Line"
+      "client": "Client"
     }
   }
 }

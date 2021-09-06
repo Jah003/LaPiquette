@@ -2,8 +2,9 @@
   "name": "Client",
   "fields": [
     {
-      "fieldName": "idClient",
-      "fieldType": "Long"
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["unique"]
     },
     {
       "fieldName": "firstName",
@@ -31,12 +32,6 @@
     }
   ],
   "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "order",
-      "otherEntityRelationshipName": "client",
-      "relationshipName": "order"
-    },
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "order",

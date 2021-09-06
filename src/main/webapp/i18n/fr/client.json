@@ -17,15 +17,13 @@
       "detail": {
         "title": "Client"
       },
-      "id": "ID",
-      "idClient": "Id Client",
+      "id": "Id",
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email",
       "adress": "Adress",
       "loggedIn": "Logged In",
       "password": "Password",
-      "order": "Order",
       "order": "Order"
     }
   }

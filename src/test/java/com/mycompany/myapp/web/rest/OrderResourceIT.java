@@ -31,9 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class OrderResourceIT {
 
-    private static final Long DEFAULT_ID_ORDER = 1L;
-    private static final Long UPDATED_ID_ORDER = 2L;
-
     private static final Float DEFAULT_TOTAL_PRICE = 1F;
     private static final Float UPDATED_TOTAL_PRICE = 2F;
 
@@ -67,11 +64,7 @@ class OrderResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Order createEntity(EntityManager em) {
-        Order order = new Order()
-            .idOrder(DEFAULT_ID_ORDER)
-            .totalPrice(DEFAULT_TOTAL_PRICE)
-            .datePurchase(DEFAULT_DATE_PURCHASE)
-            .bill(DEFAULT_BILL);
+        Order order = new Order().totalPrice(DEFAULT_TOTAL_PRICE).datePurchase(DEFAULT_DATE_PURCHASE).bill(DEFAULT_BILL);
         return order;
     }
 
@@ -82,11 +75,7 @@ class OrderResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Order createUpdatedEntity(EntityManager em) {
-        Order order = new Order()
-            .idOrder(UPDATED_ID_ORDER)
-            .totalPrice(UPDATED_TOTAL_PRICE)
-            .datePurchase(UPDATED_DATE_PURCHASE)
-            .bill(UPDATED_BILL);
+        Order order = new Order().totalPrice(UPDATED_TOTAL_PRICE).datePurchase(UPDATED_DATE_PURCHASE).bill(UPDATED_BILL);
         return order;
     }
 
@@ -108,7 +97,6 @@ class OrderResourceIT {
         List<Order> orderList = orderRepository.findAll();
         assertThat(orderList).hasSize(databaseSizeBeforeCreate + 1);
         Order testOrder = orderList.get(orderList.size() - 1);
-        assertThat(testOrder.getIdOrder()).isEqualTo(DEFAULT_ID_ORDER);
         assertThat(testOrder.getTotalPrice()).isEqualTo(DEFAULT_TOTAL_PRICE);
         assertThat(testOrder.getDatePurchase()).isEqualTo(DEFAULT_DATE_PURCHASE);
         assertThat(testOrder.getBill()).isEqualTo(DEFAULT_BILL);
@@ -144,7 +132,6 @@ class OrderResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(order.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idOrder").value(hasItem(DEFAULT_ID_ORDER.intValue())))
             .andExpect(jsonPath("$.[*].totalPrice").value(hasItem(DEFAULT_TOTAL_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].datePurchase").value(hasItem(DEFAULT_DATE_PURCHASE.toString())))
             .andExpect(jsonPath("$.[*].bill").value(hasItem(DEFAULT_BILL.booleanValue())));
@@ -162,7 +149,6 @@ class OrderResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(order.getId().intValue()))
-            .andExpect(jsonPath("$.idOrder").value(DEFAULT_ID_ORDER.intValue()))
             .andExpect(jsonPath("$.totalPrice").value(DEFAULT_TOTAL_PRICE.doubleValue()))
             .andExpect(jsonPath("$.datePurchase").value(DEFAULT_DATE_PURCHASE.toString()))
             .andExpect(jsonPath("$.bill").value(DEFAULT_BILL.booleanValue()));
@@ -187,7 +173,7 @@ class OrderResourceIT {
         Order updatedOrder = orderRepository.findById(order.getId()).get();
         // Disconnect from session so that the updates on updatedOrder are not directly saved in db
         em.detach(updatedOrder);
-        updatedOrder.idOrder(UPDATED_ID_ORDER).totalPrice(UPDATED_TOTAL_PRICE).datePurchase(UPDATED_DATE_PURCHASE).bill(UPDATED_BILL);
+        updatedOrder.totalPrice(UPDATED_TOTAL_PRICE).datePurchase(UPDATED_DATE_PURCHASE).bill(UPDATED_BILL);
 
         restOrderMockMvc
             .perform(
@@ -201,7 +187,6 @@ class OrderResourceIT {
         List<Order> orderList = orderRepository.findAll();
         assertThat(orderList).hasSize(databaseSizeBeforeUpdate);
         Order testOrder = orderList.get(orderList.size() - 1);
-        assertThat(testOrder.getIdOrder()).isEqualTo(UPDATED_ID_ORDER);
         assertThat(testOrder.getTotalPrice()).isEqualTo(UPDATED_TOTAL_PRICE);
         assertThat(testOrder.getDatePurchase()).isEqualTo(UPDATED_DATE_PURCHASE);
         assertThat(testOrder.getBill()).isEqualTo(UPDATED_BILL);
@@ -275,7 +260,7 @@ class OrderResourceIT {
         Order partialUpdatedOrder = new Order();
         partialUpdatedOrder.setId(order.getId());
 
-        partialUpdatedOrder.idOrder(UPDATED_ID_ORDER).datePurchase(UPDATED_DATE_PURCHASE).bill(UPDATED_BILL);
+        partialUpdatedOrder.totalPrice(UPDATED_TOTAL_PRICE).bill(UPDATED_BILL);
 
         restOrderMockMvc
             .perform(
@@ -289,9 +274,8 @@ class OrderResourceIT {
         List<Order> orderList = orderRepository.findAll();
         assertThat(orderList).hasSize(databaseSizeBeforeUpdate);
         Order testOrder = orderList.get(orderList.size() - 1);
-        assertThat(testOrder.getIdOrder()).isEqualTo(UPDATED_ID_ORDER);
-        assertThat(testOrder.getTotalPrice()).isEqualTo(DEFAULT_TOTAL_PRICE);
-        assertThat(testOrder.getDatePurchase()).isEqualTo(UPDATED_DATE_PURCHASE);
+        assertThat(testOrder.getTotalPrice()).isEqualTo(UPDATED_TOTAL_PRICE);
+        assertThat(testOrder.getDatePurchase()).isEqualTo(DEFAULT_DATE_PURCHASE);
         assertThat(testOrder.getBill()).isEqualTo(UPDATED_BILL);
     }
 
@@ -307,11 +291,7 @@ class OrderResourceIT {
         Order partialUpdatedOrder = new Order();
         partialUpdatedOrder.setId(order.getId());
 
-        partialUpdatedOrder
-            .idOrder(UPDATED_ID_ORDER)
-            .totalPrice(UPDATED_TOTAL_PRICE)
-            .datePurchase(UPDATED_DATE_PURCHASE)
-            .bill(UPDATED_BILL);
+        partialUpdatedOrder.totalPrice(UPDATED_TOTAL_PRICE).datePurchase(UPDATED_DATE_PURCHASE).bill(UPDATED_BILL);
 
         restOrderMockMvc
             .perform(
@@ -325,7 +305,6 @@ class OrderResourceIT {
         List<Order> orderList = orderRepository.findAll();
         assertThat(orderList).hasSize(databaseSizeBeforeUpdate);
         Order testOrder = orderList.get(orderList.size() - 1);
-        assertThat(testOrder.getIdOrder()).isEqualTo(UPDATED_ID_ORDER);
         assertThat(testOrder.getTotalPrice()).isEqualTo(UPDATED_TOTAL_PRICE);
         assertThat(testOrder.getDatePurchase()).isEqualTo(UPDATED_DATE_PURCHASE);
         assertThat(testOrder.getBill()).isEqualTo(UPDATED_BILL);

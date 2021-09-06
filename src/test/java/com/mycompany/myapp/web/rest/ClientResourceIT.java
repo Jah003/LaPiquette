@@ -29,9 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class ClientResourceIT {
 
-    private static final Long DEFAULT_ID_CLIENT = 1L;
-    private static final Long UPDATED_ID_CLIENT = 2L;
-
     private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
 
@@ -75,7 +72,6 @@ class ClientResourceIT {
      */
     public static Client createEntity(EntityManager em) {
         Client client = new Client()
-            .idClient(DEFAULT_ID_CLIENT)
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .email(DEFAULT_EMAIL)
@@ -93,7 +89,6 @@ class ClientResourceIT {
      */
     public static Client createUpdatedEntity(EntityManager em) {
         Client client = new Client()
-            .idClient(UPDATED_ID_CLIENT)
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
@@ -121,7 +116,6 @@ class ClientResourceIT {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeCreate + 1);
         Client testClient = clientList.get(clientList.size() - 1);
-        assertThat(testClient.getIdClient()).isEqualTo(DEFAULT_ID_CLIENT);
         assertThat(testClient.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testClient.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testClient.getEmail()).isEqualTo(DEFAULT_EMAIL);
@@ -160,7 +154,6 @@ class ClientResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idClient").value(hasItem(DEFAULT_ID_CLIENT.intValue())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
@@ -181,7 +174,6 @@ class ClientResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(client.getId().intValue()))
-            .andExpect(jsonPath("$.idClient").value(DEFAULT_ID_CLIENT.intValue()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
@@ -210,7 +202,6 @@ class ClientResourceIT {
         // Disconnect from session so that the updates on updatedClient are not directly saved in db
         em.detach(updatedClient);
         updatedClient
-            .idClient(UPDATED_ID_CLIENT)
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
@@ -230,7 +221,6 @@ class ClientResourceIT {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeUpdate);
         Client testClient = clientList.get(clientList.size() - 1);
-        assertThat(testClient.getIdClient()).isEqualTo(UPDATED_ID_CLIENT);
         assertThat(testClient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testClient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testClient.getEmail()).isEqualTo(UPDATED_EMAIL);
@@ -307,11 +297,7 @@ class ClientResourceIT {
         Client partialUpdatedClient = new Client();
         partialUpdatedClient.setId(client.getId());
 
-        partialUpdatedClient
-            .idClient(UPDATED_ID_CLIENT)
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .password(UPDATED_PASSWORD);
+        partialUpdatedClient.firstName(UPDATED_FIRST_NAME).lastName(UPDATED_LAST_NAME).email(UPDATED_EMAIL);
 
         restClientMockMvc
             .perform(
@@ -325,13 +311,12 @@ class ClientResourceIT {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeUpdate);
         Client testClient = clientList.get(clientList.size() - 1);
-        assertThat(testClient.getIdClient()).isEqualTo(UPDATED_ID_CLIENT);
         assertThat(testClient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testClient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testClient.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testClient.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testClient.getAdress()).isEqualTo(DEFAULT_ADRESS);
         assertThat(testClient.getLoggedIn()).isEqualTo(DEFAULT_LOGGED_IN);
-        assertThat(testClient.getPassword()).isEqualTo(UPDATED_PASSWORD);
+        assertThat(testClient.getPassword()).isEqualTo(DEFAULT_PASSWORD);
     }
 
     @Test
@@ -347,7 +332,6 @@ class ClientResourceIT {
         partialUpdatedClient.setId(client.getId());
 
         partialUpdatedClient
-            .idClient(UPDATED_ID_CLIENT)
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
@@ -367,7 +351,6 @@ class ClientResourceIT {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeUpdate);
         Client testClient = clientList.get(clientList.size() - 1);
-        assertThat(testClient.getIdClient()).isEqualTo(UPDATED_ID_CLIENT);
         assertThat(testClient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testClient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testClient.getEmail()).isEqualTo(UPDATED_EMAIL);

@@ -32,10 +32,7 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="idClient">
-            <span jhiTranslate="laPiquetteApp.client.idClient">Id Client</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="laPiquetteApp.client.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="firstName">
             <span jhiTranslate="laPiquetteApp.client.firstName">First Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -62,7 +59,6 @@
           <td>
             <a [routerLink]="['/client', client.id, 'view']">{{ client.id }}</a>
           </td>
-          <td>{{ client.idClient }}</td>
           <td>{{ client.firstName }}</td>
           <td>{{ client.lastName }}</td>
           <td>{{ client.email }}</td>

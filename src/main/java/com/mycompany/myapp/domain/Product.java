@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -61,10 +60,6 @@ public class Product implements Serializable {
 
     @Column(name = "url_image")
     private String urlImage;
-
-    @JsonIgnoreProperties(value = { "product", "order", "order" }, allowSetters = true)
-    @OneToOne(mappedBy = "product")
-    private OrderLine orderLine;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -247,25 +242,6 @@ public class Product implements Serializable {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
-    }
-
-    public OrderLine getOrderLine() {
-        return this.orderLine;
-    }
-
-    public Product orderLine(OrderLine orderLine) {
-        this.setOrderLine(orderLine);
-        return this;
-    }
-
-    public void setOrderLine(OrderLine orderLine) {
-        if (this.orderLine != null) {
-            this.orderLine.setProduct(null);
-        }
-        if (orderLine != null) {
-            orderLine.setProduct(this);
-        }
-        this.orderLine = orderLine;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

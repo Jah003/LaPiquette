@@ -27,12 +27,6 @@
       "otherEntityName": "order",
       "otherEntityRelationshipName": "orderLine",
       "relationshipName": "order"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "order",
-      "otherEntityRelationshipName": "orderLine",
-      "relationshipName": "order"
     }
   ],
   "entityTableName": "order_line",

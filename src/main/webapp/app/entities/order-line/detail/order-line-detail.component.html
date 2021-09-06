@@ -38,12 +38,6 @@
             <a [routerLink]="['/order', orderLine.order?.id, 'view']">{{ orderLine.order?.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="laPiquetteApp.orderLine.order">Order</span></dt>
-        <dd>
-          <div *ngIf="orderLine.order">
-            <a [routerLink]="['/order', orderLine.order?.id, 'view']">{{ orderLine.order?.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

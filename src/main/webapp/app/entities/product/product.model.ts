@@ -1,5 +1,3 @@
-import { IOrderLine } from 'app/entities/order-line/order-line.model';
-
 export interface IProduct {
   id?: number;
   name?: string | null;
@@ -15,7 +13,6 @@ export interface IProduct {
   percentPromo?: number | null;
   stock?: number | null;
   urlImage?: string | null;
-  orderLine?: IOrderLine | null;
 }
 
 export class Product implements IProduct {
@@ -33,8 +30,7 @@ export class Product implements IProduct {
     public temperature?: number | null,
     public percentPromo?: number | null,
     public stock?: number | null,
-    public urlImage?: string | null,
-    public orderLine?: IOrderLine | null
+    public urlImage?: string | null
   ) {}
 }
 

@@ -2,7 +2,6 @@ import { IOrder } from 'app/entities/order/order.model';
 
 export interface IClient {
   id?: number;
-  idClient?: number | null;
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
@@ -10,20 +9,17 @@ export interface IClient {
   loggedIn?: boolean | null;
   password?: string | null;
   orders?: IOrder[] | null;
-  orders?: IOrder[] | null;
 }
 
 export class Client implements IClient {
   constructor(
     public id?: number,
-    public idClient?: number | null,
     public firstName?: string | null,
     public lastName?: string | null,
     public email?: string | null,
     public adress?: string | null,
     public loggedIn?: boolean | null,
     public password?: string | null,
-    public orders?: IOrder[] | null,
     public orders?: IOrder[] | null
   ) {
     this.loggedIn = this.loggedIn ?? false;

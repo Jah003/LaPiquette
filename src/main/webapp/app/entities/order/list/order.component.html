@@ -32,10 +32,7 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="idOrder">
-            <span jhiTranslate="laPiquetteApp.order.idOrder">Id Order</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="laPiquetteApp.order.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="totalPrice">
             <span jhiTranslate="laPiquetteApp.order.totalPrice">Total Price</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -43,9 +40,6 @@
             <span jhiTranslate="laPiquetteApp.order.datePurchase">Date Purchase</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="bill"><span jhiTranslate="laPiquetteApp.order.bill">Bill</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="client.id">
-            <span jhiTranslate="laPiquetteApp.order.client">Client</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="client.id">
             <span jhiTranslate="laPiquetteApp.order.client">Client</span> <fa-icon icon="sort"></fa-icon>
           </th>
@@ -57,15 +51,9 @@
           <td>
             <a [routerLink]="['/order', order.id, 'view']">{{ order.id }}</a>
           </td>
-          <td>{{ order.idOrder }}</td>
           <td>{{ order.totalPrice }}</td>
           <td>{{ order.datePurchase | formatMediumDate }}</td>
           <td>{{ order.bill }}</td>
-          <td>
-            <div *ngIf="order.client">
-              <a [routerLink]="['/client', order.client?.id, 'view']">{{ order.client?.id }}</a>
-            </div>
-          </td>
           <td>
             <div *ngIf="order.client">
               <a [routerLink]="['/client', order.client?.id, 'view']">{{ order.client?.id }}</a>

@@ -9,60 +9,61 @@ application {
 }
 
 entity Product {
-    id Long unique,
-    name String,
-    year Integer,
-    region String,
-    type String,
-    price Float,
-    description String,
-    alcoholPer Float,
-    recommandation String,
-    ageLimit Integer,
-    temperature Integer,
-    percentPromo Float max (1),
-    stock Integer,
+    id Long unique
+    name String
+    year Integer
+    region String
+    type String
+    price Float
+    description String
+    alcoholPer Float
+    recommandation String
+    ageLimit Integer
+    temperature Integer
+    percentPromo Float max (1)
+    stock Integer
     urlImage String
 }
 
 entity Order {
-    idOrder Long,
-    totalPrice Float,
-    datePurchase LocalDate,
+    id Long unique
+    totalPrice Float
+    datePurchase LocalDate
     bill Boolean
 }
 
 entity OrderLine{
-    quantity Integer,
-    unityPrice Float,
+    quantity Integer
+    unityPrice Float
     totalPrice Float
 }
 
 entity Client{
-    idClient Long,
-    firstName String,
-    lastName String,
-    email String,
-    adress String,
-    loggedIn Boolean,
+    id Long unique
+    firstName String
+    lastName String
+    email String
+    adress String
+    loggedIn Boolean
     password String //peut-etre enlever
 }
 
 relationship OneToOne {
-    OrderLine to Product
+    OrderLine{product} to Product
 }
 
 /**
  * Many to one relationship.
  */
 relationship ManyToOne {
-    OrderLine to Order,
     Order to Client
 }
 
+/**
+ * One to many relationship.
+ */
 relationship OneToMany {
-    Order to OrderLine,
-    Client to Order
-
+    Order{orderLine} to OrderLine
 }
+
 paginate * with infinite-scroll

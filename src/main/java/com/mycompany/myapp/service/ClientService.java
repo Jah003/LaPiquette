@@ -49,9 +49,6 @@ public class ClientService {
             .findById(client.getId())
             .map(
                 existingClient -> {
-                    if (client.getIdClient() != null) {
-                        existingClient.setIdClient(client.getIdClient());
-                    }
                     if (client.getFirstName() != null) {
                         existingClient.setFirstName(client.getFirstName());
                     }

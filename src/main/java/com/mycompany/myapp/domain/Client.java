@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -22,9 +23,6 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @Column(name = "id_client")
-    private Long idClient;
 
     @Column(name = "first_name")
     private String firstName;
@@ -46,12 +44,7 @@ public class Client implements Serializable {
 
     @OneToMany(mappedBy = "client")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "orderLines", "client", "client", "orderLines" }, allowSetters = true)
-    private Set<Order> orders = new HashSet<>();
-
-    @OneToMany(mappedBy = "client")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "orderLines", "client", "client", "orderLines" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "orderLines", "client" }, allowSetters = true)
     private Set<Order> orders = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -66,19 +59,6 @@ public class Client implements Serializable {
     public Client id(Long id) {
         this.id = id;
         return this;
-    }
-
-    public Long getIdClient() {
-        return this.idClient;
-    }
-
-    public Client idClient(Long idClient) {
-        this.idClient = idClient;
-        return this;
-    }
-
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
     }
 
     public String getFirstName() {
@@ -190,37 +170,6 @@ public class Client implements Serializable {
         this.orders = orders;
     }
 
-    public Set<Order> getOrders() {
-        return this.orders;
-    }
-
-    public Client orders(Set<Order> orders) {
-        this.setOrders(orders);
-        return this;
-    }
-
-    public Client addOrder(Order order) {
-        this.orders.add(order);
-        order.setClient(this);
-        return this;
-    }
-
-    public Client removeOrder(Order order) {
-        this.orders.remove(order);
-        order.setClient(null);
-        return this;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        if (this.orders != null) {
-            this.orders.forEach(i -> i.setClient(null));
-        }
-        if (orders != null) {
-            orders.forEach(i -> i.setClient(this));
-        }
-        this.orders = orders;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -245,7 +194,6 @@ public class Client implements Serializable {
     public String toString() {
         return "Client{" +
             "id=" + getId() +
-            ", idClient=" + getIdClient() +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +

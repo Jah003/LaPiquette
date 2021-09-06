@@ -22,7 +22,6 @@ describe('Service Tests', () => {
 
       elemDefault = {
         id: 0,
-        idClient: 0,
         firstName: 'AAAAAAA',
         lastName: 'AAAAAAA',
         email: 'AAAAAAA',
@@ -64,7 +63,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 1,
-            idClient: 1,
             firstName: 'BBBBBB',
             lastName: 'BBBBBB',
             email: 'BBBBBB',
@@ -87,11 +85,11 @@ describe('Service Tests', () => {
       it('should partial update a Client', () => {
         const patchObject = Object.assign(
           {
-            firstName: 'BBBBBB',
             lastName: 'BBBBBB',
             email: 'BBBBBB',
             adress: 'BBBBBB',
             loggedIn: true,
+            password: 'BBBBBB',
           },
           new Client()
         );
@@ -111,7 +109,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 1,
-            idClient: 1,
             firstName: 'BBBBBB',
             lastName: 'BBBBBB',
             email: 'BBBBBB',
@@ -169,7 +166,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Client to an array', () => {
-          const clientArray: IClient[] = [{ id: 123 }, { id: 456 }, { id: 42940 }];
+          const clientArray: IClient[] = [{ id: 123 }, { id: 456 }, { id: 22053 }];
           const clientCollection: IClient[] = [{ id: 123 }];
           expectedResult = service.addClientToCollectionIfMissing(clientCollection, ...clientArray);
           expect(expectedResult).toHaveLength(3);

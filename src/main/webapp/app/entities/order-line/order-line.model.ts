@@ -8,7 +8,6 @@ export interface IOrderLine {
   totalPrice?: number | null;
   product?: IProduct | null;
   order?: IOrder | null;
-  order?: IOrder | null;
 }
 
 export class OrderLine implements IOrderLine {
@@ -18,7 +17,6 @@ export class OrderLine implements IOrderLine {
     public unityPrice?: number | null,
     public totalPrice?: number | null,
     public product?: IProduct | null,
-    public order?: IOrder | null,
     public order?: IOrder | null
   ) {}
 }
