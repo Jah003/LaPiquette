@@ -1,0 +1,68 @@
+application {
+  config {
+    baseName laPiquette
+  }
+  entities Product, Order, OrderLine, Client
+  paginate * with pagination except OrderLine
+  service * with serviceClass
+
+}
+
+entity Product {
+    id Long unique,
+    name String,
+    year Integer,
+    region String,
+    type String,
+    price Float,
+    description String,
+    alcoholPer Float,
+    recommandation String,
+    ageLimit Integer,
+    temperature Integer,
+    percentPromo Float max (1),
+    stock Integer,
+    urlImage String
+}
+
+entity Order {
+    idOrder Long,
+    totalPrice Float,
+    datePurchase LocalDate,
+    bill Boolean
+}
+
+entity OrderLine{
+    quantity Integer,
+    unityPrice Float,
+    totalPrice Float
+}
+
+entity Client{
+    idClient Long,
+    firstName String,
+    lastName String,
+    email String,
+    adress String,
+    loggedIn Boolean,
+    password String //peut-etre enlever
+}
+
+relationship OneToOne {
+    OrderLine to Product
+}
+
+/**
+ * Many to one relationship.
+ */
+relationship ManyToOne {
+    OrderLine to Order,
+    Order to Client
+}
+
+relationship OneToMany {
+    Order to OrderLine,
+    Client to Order
+
+}
+paginate * with infinite-scroll
