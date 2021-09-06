@@ -4,6 +4,12 @@
 - Init du projet et du git : OK
 - Vérification de la compilation à vide par chaque membre : TODO
 - Classement des taches : TODO
+- Choix des technos :
+    - Frontend : Angular
+    - SGBD : MongoBD
+    - Gestionnaire de version : Github
+    - Deploiement : Jhipster, Heroku
+    - Tests : Mockito (dont ts-mockito)
 
 | Priorité | Tache        | Critère           | Rush  | Effort estimé | Statut |
 | -------- | ------------ | ----------------- | ----- | ------------- | ------ |
