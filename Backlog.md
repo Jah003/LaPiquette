@@ -10,6 +10,8 @@
   - Gestionnaire de version : Github
   - Deploiement : Jhipster, Heroku
   - Tests : Mockito (dont ts-mockito)
+- Commandes :
+  - Lancement back : mvn spring-boot:run
 
 | Priorité | Tache                                          | Critère                                                                                              | Rush | Effort estimé | Statut       |
 | -------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---- | ------------- | ------------ |
