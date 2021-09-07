@@ -70,6 +70,7 @@ out/
 # Visual Studio Code
 ######################
 .vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -157,3 +158,18 @@ Desktop.ini
 ######################
 /coverage/
 /.nyc_output/
+
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Tt]arget/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Pp]ublish/
