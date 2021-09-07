@@ -13,6 +13,6 @@ public class DatabasePopulatorResource {
 
     @GetMapping("/product/populate")
     public void init() {
-        dp.test();
+        dp.populate();
     }
 }
